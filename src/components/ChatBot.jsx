@@ -403,8 +403,24 @@ export default function ChatBot() {
   const [typing, setTyping] = useState(false);
   const [hasNew, setHasNew] = useState(false);
   const [started, setStarted] = useState(false);
+  const [vvHeight, setVvHeight] = useState(() =>
+    typeof window !== 'undefined' ? (window.visualViewport?.height || window.innerHeight) : 600
+  );
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
+
+  // Adapter la hauteur quand le clavier mobile s'ouvre/ferme
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const onResize = () => {
+      setVvHeight(vv.height);
+      // Scroll vers le bas automatiquement quand clavier s'ouvre
+      setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: 'instant' }), 80);
+    };
+    vv.addEventListener('resize', onResize);
+    return () => vv.removeEventListener('resize', onResize);
+  }, []);
 
   useEffect(() => {
     if (open && !started) {
@@ -445,11 +461,13 @@ export default function ChatBot() {
 
   return (
     <>
-      {/* Floating button */}
+      {/* Floating button — caché sur mobile quand le chat est ouvert */}
       <motion.button
         onClick={() => setOpen(o => !o)}
         style={{
-          position: 'fixed', bottom: 90, right: 16, zIndex: 800,
+          position: 'fixed',
+          bottom: open && window.innerWidth <= 640 ? -80 : 90,
+          right: 16, zIndex: 810,
           width: 50, height: 50, borderRadius: '50%',
           background: 'linear-gradient(135deg, #7c3aed, #06b6d4)',
           border: 'none', cursor: 'pointer',
@@ -487,22 +505,51 @@ export default function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              position: 'fixed',
-              bottom: 150,
-              right: 12,
-              left: 12,
-              zIndex: 800,
-              width: 'auto',
-              maxWidth: 360,
-              marginLeft: 'auto',
-              maxHeight: 'min(530px, calc(100vh - 180px))',
-              background: 'rgba(5, 6, 18, 0.97)',
-              border: '1px solid rgba(124,58,237,0.3)',
-              borderRadius: 18, backdropFilter: 'blur(20px)',
-              display: 'flex', flexDirection: 'column', overflow: 'hidden',
-              boxShadow: '0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(124,58,237,0.08)',
-            }}
+            style={(() => {
+              const isMobile = window.innerWidth <= 640;
+              const fullVh = window.innerHeight;
+              const keyboardOpen = vvHeight < fullVh * 0.82;
+
+              if (isMobile) {
+                // Mobile : bottom sheet qui s'adapte au clavier
+                const chatHeight = keyboardOpen
+                  ? vvHeight - 8                     // prend tout l'espace dispo au dessus du clavier
+                  : Math.min(vvHeight * 0.78, 520);  // 78% de l'écran quand clavier fermé
+                return {
+                  position: 'fixed',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  zIndex: 800,
+                  height: chatHeight,
+                  maxHeight: chatHeight,
+                  background: 'rgba(5, 6, 18, 0.98)',
+                  border: '1px solid rgba(124,58,237,0.3)',
+                  borderRadius: '18px 18px 0 0',
+                  backdropFilter: 'blur(20px)',
+                  display: 'flex', flexDirection: 'column', overflow: 'hidden',
+                  boxShadow: '0 -8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(124,58,237,0.1)',
+                  transition: 'height 0.2s ease',
+                };
+              }
+              // Desktop
+              return {
+                position: 'fixed',
+                bottom: 150,
+                right: 12,
+                left: 12,
+                zIndex: 800,
+                maxWidth: 360,
+                marginLeft: 'auto',
+                maxHeight: 'min(530px, calc(100vh - 180px))',
+                background: 'rgba(5, 6, 18, 0.97)',
+                border: '1px solid rgba(124,58,237,0.3)',
+                borderRadius: 18,
+                backdropFilter: 'blur(20px)',
+                display: 'flex', flexDirection: 'column', overflow: 'hidden',
+                boxShadow: '0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(124,58,237,0.08)',
+              };
+            })()}
           >
             {/* Header */}
             <div style={{
@@ -510,6 +557,7 @@ export default function ChatBot() {
               background: 'linear-gradient(135deg, rgba(124,58,237,0.18), rgba(6,182,212,0.08))',
               borderBottom: '1px solid rgba(124,58,237,0.18)',
               display: 'flex', alignItems: 'center', gap: 10,
+              flexShrink: 0,
             }}>
               <div style={{
                 width: 36, height: 36, borderRadius: '50%',
@@ -519,7 +567,7 @@ export default function ChatBot() {
                 boxShadow: '0 0 12px rgba(124,58,237,0.5)',
                 flexShrink: 0,
               }}>M</div>
-              <div style={{ flex: 1 }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
                 <p style={{ margin: 0, fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '0.88rem', color: '#fff' }}>
                   Mo
                 </p>
@@ -528,6 +576,21 @@ export default function ChatBot() {
                   {lang === 'fr' ? 'Assistant de Mohamed Ali' : 'Mohamed Ali\'s Assistant'}
                 </p>
               </div>
+              {/* Bouton fermer visible sur mobile */}
+              <button
+                onClick={() => setOpen(false)}
+                style={{
+                  background: 'rgba(255,255,255,0.08)', border: 'none',
+                  borderRadius: '50%', width: 32, height: 32,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  cursor: 'pointer', color: '#a1a1aa', flexShrink: 0,
+                  transition: 'background 0.2s',
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.15)'}
+                onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
+              >
+                <X size={16} />
+              </button>
             </div>
 
             {/* Messages */}
