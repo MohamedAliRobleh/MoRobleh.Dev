@@ -68,8 +68,8 @@ const KB = [
   {
     id: 'pricing',
     pattern: /\b(prix|tarif|coût|budget|price|cost|rate|charge|combien|how\s*much|devis|quote|facturer|invoice|forfait|package|pay|payer|investissement|investment)\b/i,
-    fr: "Les tarifs dépendent du **type et de la complexité** du projet :\n\n💻 **Site vitrine** — à partir de 800 $CAD\n📱 **PWA / Application web** — à partir de 1 500 $CAD\n🏪 **Plateforme / Marketplace** — à partir de 3 000 $CAD\n☁️ **SaaS complet** — sur devis\n🤖 **Intégration IA** — à partir de 500 $CAD\n🔧 **Maintenance mensuelle** — à partir de 200 $CAD/mois\n\nContactez Mohamed Ali pour un **devis personnalisé gratuit** — chaque projet est unique !",
-    en: "Pricing depends on the **type and complexity** of the project:\n\n💻 **Showcase website** — from $800 CAD\n📱 **PWA / Web app** — from $1,500 CAD\n🏪 **Platform / Marketplace** — from $3,000 CAD\n☁️ **Full SaaS** — custom quote\n🤖 **AI Integration** — from $500 CAD\n🔧 **Monthly maintenance** — from $200 CAD/month\n\nContact Mohamed Ali for a **free personalized quote** — every project is unique!",
+    fr: "Les tarifs varient selon la nature et la complexité de chaque projet. 💼\n\nPour obtenir un **devis personnalisé et gratuit**, contactez Mohamed Ali directement :\n\n📱 **WhatsApp** — +1 (613) 291-7943\n📧 **Email** — Mohameda.robleh@gmail.com\n📝 **Formulaire** — Section Contact du site\n\nIl vous répondra dans les **24 heures** avec une estimation claire et détaillée selon vos besoins.",
+    en: "Pricing varies depending on the nature and complexity of each project. 💼\n\nTo get a **free personalized quote**, contact Mohamed Ali directly:\n\n📱 **WhatsApp** — +1 (613) 291-7943\n📧 **Email** — Mohameda.robleh@gmail.com\n📝 **Form** — Contact section on the site\n\nHe'll reply within **24 hours** with a clear and detailed estimate based on your needs.",
   },
 
   /* ── Stack technique ── */
