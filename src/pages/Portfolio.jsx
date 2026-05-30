@@ -15,7 +15,7 @@ const GRADIENTS = {
 const PROJECTS = [
   { id: 1,  name: 'Voyage Voyage',         desc: 'Agence de tourisme',          url: 'https://voyagevoyagedj.com',               category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Tourism'] },
   { id: 2,  name: 'DWI',                   desc: 'Djibouti Wellness Initiative',url: 'https://dwi-website-six.vercel.app',       category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Health'] },
-  { id: 3,  name: 'BOCRide',               desc: 'Covoiturage Banque du Canada', url: null,                                       category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Carpooling'] },
+  { id: 3,  name: 'BOCRide',               desc: 'Application de covoiturage',   url: null,                                       category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Carpooling'] },
   { id: 4,  name: 'CampusRide',            desc: 'Covoiturage Collège La Cité', url: 'https://campusride-delta.vercel.app',      category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Campus'] },
   { id: 5,  name: 'Ottawa Blue Stars',     desc: 'Gestion d\'équipe sportive',  url: 'https://ottawa-blue-stars.vercel.app',     category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Sports'] },
   { id: 6,  name: 'Khidma',               desc: 'Marketplace services à domicile', url: 'https://khidma-henna.vercel.app',     category: 'platform', gradient: GRADIENTS.platform, tags: ['Platform', 'Marketplace'] },
