@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import ChatBot from './components/ChatBot';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
@@ -95,6 +96,7 @@ function App() {
     <>
       <CustomCursor />
       <ScrollToTop />
+      <ChatBot />
       <Navbar />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
