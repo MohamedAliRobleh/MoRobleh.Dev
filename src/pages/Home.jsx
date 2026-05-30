@@ -1,32 +1,12 @@
-import React, { lazy, Suspense, useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import {
-  Code2, Smartphone, Palette, Network, Truck, Bot, ArrowRight, ChevronDown,
+  Code2, Smartphone, Bot, ArrowRight, ChevronDown,
 } from 'lucide-react';
 import { fadeUp, fadeIn, scaleIn, staggerContainer, viewportConfig } from '../hooks/useScrollAnimation';
-
-const Spline = lazy(() => import('@splinetool/react-spline'));
-
-class SplineErrorBoundary extends React.Component {
-  constructor(props) { super(props); this.state = { error: false }; }
-  static getDerivedStateFromError() { return { error: true }; }
-  render() { return this.state.error ? this.props.fallback : this.props.children; }
-}
-
-function SplineFallback() {
-  return (
-    <div className="hero-3d-fallback">
-      <div style={{ textAlign: 'center' }}>
-        <div className="hero-3d-orb" />
-        <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem', fontFamily: 'Syne,sans-serif', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-          morobleh<span style={{ color: 'var(--accent)' }}>.</span>dev
-        </p>
-      </div>
-    </div>
-  );
-}
+import CodeScene from '../components/CodeScene';
 
 function AnimatedWord({ word, delay, highlight }) {
   return (
@@ -160,21 +140,14 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Right — 3D */}
+            {/* Right — Code Scene */}
             <motion.div
               className="hero-3d-wrapper"
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
             >
-              <SplineErrorBoundary fallback={<SplineFallback />}>
-                <Suspense fallback={<SplineFallback />}>
-                  <Spline
-                    scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
-                    style={{ width: '100%', height: '100%' }}
-                  />
-                </Suspense>
-              </SplineErrorBoundary>
+              <CodeScene />
             </motion.div>
           </div>
         </div>
