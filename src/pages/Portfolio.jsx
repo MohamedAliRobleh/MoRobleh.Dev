@@ -15,13 +15,13 @@ const GRADIENTS = {
 const PROJECTS = [
   { id: 1,  name: 'Voyage Voyage',         desc: 'Agence de tourisme',          url: 'https://voyagevoyagedj.com',               category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Tourism'] },
   { id: 2,  name: 'DWI',                   desc: 'Djibouti Wellness Initiative',url: 'https://dwi-website-six.vercel.app',       category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Health'] },
-  { id: 3,  name: 'BOCRide',               desc: 'Covoiturage Banque du Canada', url: 'https://boc-ride.vercel.app',              category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Carpooling'] },
+  { id: 3,  name: 'BOCRide',               desc: 'Covoiturage Banque du Canada', url: null,                                       category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Carpooling'] },
   { id: 4,  name: 'CampusRide',            desc: 'Covoiturage Collège La Cité', url: 'https://campusride-delta.vercel.app',      category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Campus'] },
   { id: 5,  name: 'Ottawa Blue Stars',     desc: 'Gestion d\'équipe sportive',  url: 'https://ottawa-blue-stars.vercel.app',     category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Sports'] },
   { id: 6,  name: 'Khidma',               desc: 'Marketplace services à domicile', url: 'https://khidma-henna.vercel.app',     category: 'platform', gradient: GRADIENTS.platform, tags: ['Platform', 'Marketplace'] },
   { id: 7,  name: 'Clinique Al-Baraka',    desc: 'Réservation médicale',        url: 'https://rendez-vous-clinique.vercel.app',  category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Healthcare'] },
   { id: 8,  name: 'BulkSMS',              desc: 'Plateforme SMS',              url: 'https://bulksms-platform.vercel.app',      category: 'platform', gradient: GRADIENTS.saas,     tags: ['SaaS', 'Platform'] },
-  { id: 9,  name: 'MaplePath',            desc: 'Guide immigration Canada',    url: 'https://maple-path-rust.vercel.app',       category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Immigration'] },
+  { id: 9,  name: 'MaplePath',            desc: 'Guide immigration Canada',    url: 'https://maple-path-rust.vercel.app',       category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Immigration'], hidden: true },
   { id: 10, name: 'Bella Coiffure',        desc: 'Site vitrine salon',          url: 'https://bella-coiffure-seven.vercel.app',  category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Beauty'] },
   { id: 11, name: 'MovieRent',            desc: 'Location de films en ligne',  url: 'https://movierent-six.vercel.app',         category: 'platform', gradient: GRADIENTS.platform, tags: ['Platform', 'Streaming'] },
   { id: 12, name: 'Confidential',          desc: '',                            url: null,                                       category: 'all',      gradient: GRADIENTS.ai,       tags: [] },
@@ -33,9 +33,10 @@ export default function Portfolio() {
   const { t } = useTranslation();
   const [active, setActive] = useState('all');
 
-  const filtered = active === 'all'
+  const filtered = (active === 'all'
     ? PROJECTS
-    : PROJECTS.filter((p) => p.category === active || p.category === 'all');
+    : PROJECTS.filter((p) => p.category === active || p.category === 'all')
+  ).filter((p) => !p.hidden);
 
   const filterLabel = (key) => {
     const map = {
