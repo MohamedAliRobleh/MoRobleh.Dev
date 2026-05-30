@@ -27,7 +27,7 @@ const KB = [
   /* ── Services généraux ── */
   {
     id: 'services',
-    pattern: /\b(service|offre|propos|propose|fait quoi|what\s*do\s*you|spécialit|specialit|compétence|skill|expertise|domaine|domain|peut\s*faire|can\s*do|travaille|work\s*on)\b/i,
+    pattern: /\b(services?|offre|propos|propose|fait quoi|what\s*do\s*you|spécialit|specialit|compétences?|skill|expertise|domaine|domain|peut\s*faire|can\s*do|travaille|work\s*on)/i,
     fr: "Mohamed Ali propose **9 services premium** :\n\n🖥️ **Sites Web Sur Mesure** — responsive & performants\n📱 **Progressive Web Apps** — installables & offline\n🎨 **Branding & Identité visuelle** — logo, charte graphique\n🏪 **Plateformes & Marketplaces** — multi-rôles & dashboards\n🚚 **Systèmes de livraison & commande** — app client + admin\n🤖 **Intégration IA** — Claude, OpenAI, assistants intelligents\n📅 **Réservation en ligne** — rendez-vous & notifications\n☁️ **Plateformes SaaS** — abonnements & architecture scalable\n🔧 **Maintenance & Support** — mises à jour & optimisation\n\nQuel service vous intéresse ?",
     en: "Mohamed Ali offers **9 premium services**:\n\n🖥️ **Custom Websites** — responsive & performant\n📱 **Progressive Web Apps** — installable & offline\n🎨 **Branding & Visual Identity** — logo, brand guidelines\n🏪 **Platforms & Marketplaces** — multi-role & dashboards\n🚚 **Delivery & Ordering Systems** — customer app + admin\n🤖 **AI Integration** — Claude, OpenAI, smart assistants\n📅 **Online Booking** — appointments & notifications\n☁️ **SaaS Platforms** — subscriptions & scalable architecture\n🔧 **Maintenance & Support** — updates & optimization\n\nWhich service interests you?",
   },
@@ -35,7 +35,7 @@ const KB = [
   /* ── Portfolio / Projets ── */
   {
     id: 'portfolio',
-    pattern: /\b(projet|portfolio|réalisation|work|project|créé|réalisé|built|made|show|exemple|example|voir|reference|référence|voyagevoyage|bocride|campusride|khidma|bulksms|mappath|bella|movierent|dwi|baraka)\b/i,
+    pattern: /\b(projets?|portfolio|réalisations?|work|projects?|créé|réalisé|built|made|show|exemples?|example|voir|references?|voyagevoyage|bocride|campusride|khidma|bulksms|bella|movierent|dwi|baraka)/i,
     fr: "Voici les **réalisations principales** de Mohamed Ali :\n\n🌍 **Voyage Voyage** — Agence de tourisme (Djibouti)\n🏥 **Clinique Al-Baraka** — Réservation médicale en ligne\n🚗 **CampusRide** — Covoiturage PWA (Collège La Cité)\n🚗 **BOCRide** — Covoiturage (Banque du Canada)\n🏆 **Ottawa Blue Stars** — Gestion d'équipe sportive\n🛒 **Khidma** — Marketplace de services à domicile\n📱 **BulkSMS** — Plateforme SaaS de communication\n💻 **DWI** — Djibouti Wellness Initiative\n💇 **Bella Coiffure** — Site vitrine salon de beauté\n🎬 **MovieRent** — Location de films en ligne\n\n👉 Section **Portfolio** pour voir tous les projets !",
     en: "Here are Mohamed Ali's **main projects**:\n\n🌍 **Voyage Voyage** — Tourism agency (Djibouti)\n🏥 **Clinique Al-Baraka** — Online medical booking\n🚗 **CampusRide** — Carpooling PWA (La Cité College)\n🚗 **BOCRide** — Carpooling (Bank of Canada)\n🏆 **Ottawa Blue Stars** — Sports team management\n🛒 **Khidma** — Home services marketplace\n📱 **BulkSMS** — SaaS communication platform\n💻 **DWI** — Djibouti Wellness Initiative\n💇 **Bella Coiffure** — Beauty salon website\n🎬 **MovieRent** — Online film rental\n\n👉 Check the **Portfolio** section for all projects!",
   },
@@ -43,7 +43,7 @@ const KB = [
   /* ── Contact ── */
   {
     id: 'contact',
-    pattern: /\b(contact|email|whatsapp|joindre|reach|message|appel|call|phone|téléphone|écrire|write|discuter|discuss|parler|talk|envoyer|send)\b/i,
+    pattern: /\b(contacts?|email|whatsapp|joindre|reach|messages?|appel|call|phone|téléphone|écrire|write|discuter|discuss|parler|talk|envoyer|send|contacter)/i,
     fr: "Vous pouvez contacter Mohamed Ali de **plusieurs façons** :\n\n📧 **Email** — Mohameda.robleh@gmail.com\n📱 **WhatsApp** — +1 (613) 291-7943\n💼 **LinkedIn** — /in/mohamed-ali-roblehh\n👨‍💻 **GitHub** — /MohamedAliRobleh\n\nOu directement via le **formulaire de contact** du site — il répond généralement sous **24 heures** !",
     en: "You can contact Mohamed Ali in **several ways**:\n\n📧 **Email** — Mohameda.robleh@gmail.com\n📱 **WhatsApp** — +1 (613) 291-7943\n💼 **LinkedIn** — /in/mohamed-ali-roblehh\n👨‍💻 **GitHub** — /MohamedAliRobleh\n\nOr directly through the **contact form** on the site — he usually replies within **24 hours**!",
   },
@@ -67,7 +67,7 @@ const KB = [
   /* ── Tarifs / Prix ── */
   {
     id: 'pricing',
-    pattern: /\b(prix|tarif|coût|budget|price|cost|rate|charge|combien|how\s*much|devis|quote|facturer|invoice|forfait|package|pay|payer|investissement|investment)\b/i,
+    pattern: /\b(prix|tarifs?|coût|budget|price|cost|rates?|charge|combien|how\s*much|devis|quote|facturer|invoices?|forfait|package|pay|payer|investissement|investment)/i,
     fr: "Les tarifs varient selon la nature et la complexité de chaque projet. 💼\n\nPour obtenir un **devis personnalisé et gratuit**, contactez Mohamed Ali directement :\n\n📱 **WhatsApp** — +1 (613) 291-7943\n📧 **Email** — Mohameda.robleh@gmail.com\n📝 **Formulaire** — Section Contact du site\n\nIl vous répondra dans les **24 heures** avec une estimation claire et détaillée selon vos besoins.",
     en: "Pricing varies depending on the nature and complexity of each project. 💼\n\nTo get a **free personalized quote**, contact Mohamed Ali directly:\n\n📱 **WhatsApp** — +1 (613) 291-7943\n📧 **Email** — Mohameda.robleh@gmail.com\n📝 **Form** — Contact section on the site\n\nHe'll reply within **24 hours** with a clear and detailed estimate based on your needs.",
   },
@@ -281,14 +281,40 @@ const QUICK_REPLIES = {
   en: ['Your services 💼', 'Projects 🗂️', 'Pricing 💰', 'Available? ✅', 'How to contact? 📱'],
 };
 
-/* ─── Smart matcher with scoring ─────────────────────── */
+/* ─── Quick reply → KB id direct map ─────────────────── */
+const QR_MAP = {
+  // FR
+  'Vos services 💼':            'services',
+  'Projets réalisés 🗂️':       'portfolio',
+  'Tarifs 💰':                  'pricing',
+  'Disponible ? ✅':            'availability',
+  'Comment vous contacter ? 📱':'contact',
+  // EN
+  'Your services 💼':           'services',
+  'Projects 🗂️':               'portfolio',
+  'Pricing 💰':                 'pricing',
+  'Available? ✅':              'availability',
+  'How to contact? 📱':         'contact',
+};
+
+/* ─── Smart matcher ───────────────────────────────────── */
 function getResponse(input, lang) {
-  const text = input.toLowerCase().trim();
+  const text = input.trim();
+
+  // 1. Direct match for quick replies
+  if (QR_MAP[text]) {
+    const entry = KB.find(e => e.id === QR_MAP[text]);
+    if (entry) return lang === 'en' ? entry.en : entry.fr;
+  }
+
+  // 2. Regex matching on lowercased input
+  const lower = text.toLowerCase();
   for (const entry of KB) {
-    if (entry.pattern.test(text)) {
+    if (entry.pattern.test(lower)) {
       return lang === 'en' ? entry.en : entry.fr;
     }
   }
+
   return lang === 'en' ? FALLBACK.en : FALLBACK.fr;
 }
 
