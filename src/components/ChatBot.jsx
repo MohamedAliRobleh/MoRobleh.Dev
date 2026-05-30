@@ -449,8 +449,8 @@ export default function ChatBot() {
       <motion.button
         onClick={() => setOpen(o => !o)}
         style={{
-          position: 'fixed', bottom: 88, right: 32, zIndex: 800,
-          width: 52, height: 52, borderRadius: '50%',
+          position: 'fixed', bottom: 90, right: 16, zIndex: 800,
+          width: 50, height: 50, borderRadius: '50%',
           background: 'linear-gradient(135deg, #7c3aed, #06b6d4)',
           border: 'none', cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -488,8 +488,15 @@ export default function ChatBot() {
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              position: 'fixed', bottom: 152, right: 32, zIndex: 800,
-              width: 340, maxHeight: 530,
+              position: 'fixed',
+              bottom: 150,
+              right: 12,
+              left: 12,
+              zIndex: 800,
+              width: 'auto',
+              maxWidth: 360,
+              marginLeft: 'auto',
+              maxHeight: 'min(530px, calc(100vh - 180px))',
               background: 'rgba(5, 6, 18, 0.97)',
               border: '1px solid rgba(124,58,237,0.3)',
               borderRadius: 18, backdropFilter: 'blur(20px)',
@@ -513,12 +520,12 @@ export default function ChatBot() {
                 flexShrink: 0,
               }}>M</div>
               <div style={{ flex: 1 }}>
-                <p style={{ margin: 0, fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '0.86rem', color: '#fff' }}>
-                  Mo — morobleh.dev
+                <p style={{ margin: 0, fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '0.88rem', color: '#fff' }}>
+                  Mo
                 </p>
-                <p style={{ margin: 0, fontSize: '0.68rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: 4 }}>
-                  <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
-                  {lang === 'fr' ? 'Assistant virtuel · En ligne' : 'Virtual assistant · Online'}
+                <p style={{ margin: '1px 0 0', fontSize: '0.68rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#10b981', display: 'inline-block', flexShrink: 0 }} />
+                  {lang === 'fr' ? 'Assistant de Mohamed Ali' : 'Mohamed Ali\'s Assistant'}
                 </p>
               </div>
             </div>
