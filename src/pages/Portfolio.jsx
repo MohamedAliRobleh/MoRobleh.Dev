@@ -3,6 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ExternalLink, Lock } from 'lucide-react';
 import { fadeUp, staggerContainer, viewportConfig } from '../hooks/useScrollAnimation';
+import thumbVoyage      from '../assets/thumbnail-voyage.jpg';
+import thumbDwi         from '../assets/thumbnail-dwi.jpg';
+import thumbCampusride  from '../assets/thumbnail-campusride.jpg';
+import thumbBluestars   from '../assets/thumbnail-bluestars.jpg';
+import thumbKhidma      from '../assets/thumbnail-khidma.jpg';
+import thumbAlbaraka    from '../assets/thumbnail-albaraka.jpg';
+import thumbBulksms     from '../assets/thumbnail-bulksms.jpg';
+import thumbBellacoiffure from '../assets/thumbnail-bellacoiffure.jpg';
+import thumbMovierent   from '../assets/thumbnail-movierent.jpg';
+import thumbJobapp      from '../assets/thumbnail-linkedin.jpg';
 
 const GRADIENTS = {
   web:      'linear-gradient(135deg, #1e3a5f 0%, #2d1b69 100%)',
@@ -13,18 +23,19 @@ const GRADIENTS = {
 };
 
 const PROJECTS = [
-  { id: 1,  name: 'Voyage Voyage',         desc: 'Agence de tourisme',          url: 'https://voyagevoyagedj.com',               category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Tourism'] },
-  { id: 2,  name: 'DWI',                   desc: 'Djibouti Wellness Initiative',url: 'https://dwi-website-six.vercel.app',       category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Health'] },
-  { id: 3,  name: 'BOCRide',               desc: 'Application de covoiturage',   url: null,                                       category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Carpooling'] },
-  { id: 4,  name: 'CampusRide',            desc: 'Covoiturage Collège La Cité', url: 'https://campusride-delta.vercel.app',      category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Campus'] },
-  { id: 5,  name: 'Ottawa Blue Stars',     desc: 'Gestion d\'équipe sportive',  url: 'https://ottawa-blue-stars.vercel.app',     category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Sports'] },
-  { id: 6,  name: 'Khidma',               desc: 'Marketplace services à domicile', url: 'https://khidma-henna.vercel.app',     category: 'platform', gradient: GRADIENTS.platform, tags: ['Platform', 'Marketplace'] },
-  { id: 7,  name: 'Clinique Al-Baraka',    desc: 'Réservation médicale',        url: 'https://rendez-vous-clinique.vercel.app',  category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Healthcare'] },
-  { id: 8,  name: 'BulkSMS',              desc: 'Plateforme SMS',              url: 'https://bulksms-platform.vercel.app',      category: 'platform', gradient: GRADIENTS.saas,     tags: ['SaaS', 'Platform'] },
-  { id: 9,  name: 'MaplePath',            desc: 'Guide immigration Canada',    url: 'https://maple-path-rust.vercel.app',       category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Immigration'], hidden: true },
-  { id: 10, name: 'Bella Coiffure',        desc: 'Site vitrine salon',          url: 'https://bella-coiffure-seven.vercel.app',  category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Beauty'] },
-  { id: 11, name: 'MovieRent',            desc: 'Location de films en ligne',  url: 'https://movierent-six.vercel.app',         category: 'platform', gradient: GRADIENTS.platform, tags: ['Platform', 'Streaming'] },
-  { id: 12, name: 'Confidential',          desc: '',                            url: null,                                       category: 'all',      gradient: GRADIENTS.ai,       tags: [] },
+  { id: 1,  name: 'Voyage Voyage',         desc: 'Agence de tourisme',              url: 'https://voyagevoyagedj.com',               category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Tourism'],     thumbnail: thumbVoyage },
+  { id: 2,  name: 'DWI',                   desc: 'Djibouti Wellness Initiative',    url: 'https://dwi-website-six.vercel.app',       category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Health'],      thumbnail: thumbDwi },
+  { id: 3,  name: 'BOCRide',               desc: 'Application de covoiturage',      url: null,                                       category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Carpooling'] },
+  { id: 4,  name: 'CampusRide',            desc: 'Covoiturage Collège La Cité',    url: 'https://campusride-delta.vercel.app',      category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Campus'],      thumbnail: thumbCampusride },
+  { id: 5,  name: 'Ottawa Blue Stars',     desc: 'Gestion d\'équipe sportive',     url: 'https://ottawa-blue-stars.vercel.app',     category: 'pwa',      gradient: GRADIENTS.pwa,      tags: ['PWA', 'Sports'],      thumbnail: thumbBluestars },
+  { id: 6,  name: 'Khidma',               desc: 'Marketplace services à domicile', url: 'https://khidma-henna.vercel.app',          category: 'platform', gradient: GRADIENTS.platform, tags: ['Platform', 'Marketplace'], thumbnail: thumbKhidma },
+  { id: 7,  name: 'Clinique Al-Baraka',    desc: 'Réservation médicale',           url: 'https://rendez-vous-clinique.vercel.app',  category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Healthcare'],  thumbnail: thumbAlbaraka },
+  { id: 8,  name: 'BulkSMS',              desc: 'Plateforme SMS',                 url: 'https://bulksms-platform.vercel.app',      category: 'platform', gradient: GRADIENTS.saas,     tags: ['SaaS', 'Platform'],   thumbnail: thumbBulksms },
+  { id: 9,  name: 'MaplePath',            desc: 'Guide immigration Canada',        url: 'https://maple-path-rust.vercel.app',       category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Immigration'], hidden: true },
+  { id: 10, name: 'Bella Coiffure',        desc: 'Site vitrine salon',             url: 'https://bella-coiffure-seven.vercel.app',  category: 'web',      gradient: GRADIENTS.web,      tags: ['Web', 'Beauty'],      thumbnail: thumbBellacoiffure },
+  { id: 11, name: 'MovieRent',            desc: 'Location de films en ligne',      url: 'https://movierent-six.vercel.app',         category: 'platform', gradient: GRADIENTS.platform, tags: ['Platform', 'Streaming'], thumbnail: thumbMovierent },
+  { id: 13, name: 'Job Application System', desc: 'Système de candidature d\'emploi', url: 'https://modern-job-application-system.vercel.app/', category: 'platform', gradient: GRADIENTS.saas, tags: ['Platform', 'SaaS', 'HR'], thumbnail: thumbJobapp },
+  { id: 12, name: 'Confidential',          desc: '',                                url: null,                                       category: 'all',      gradient: GRADIENTS.ai,       tags: [] },
 ];
 
 const FILTERS = ['all', 'web', 'pwa', 'platform'];
@@ -136,20 +147,30 @@ export default function Portfolio() {
                   ) : (
                     /* Regular project card */
                     <>
-                      <div className="project-thumbnail" style={{ background: project.gradient }}>
-                        {/* Decorative grid lines */}
-                        <div style={{
-                          position: 'absolute', inset: 0, opacity: 0.12,
-                          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-                          backgroundSize: '32px 32px',
-                        }} />
-                        <div style={{
-                          position: 'absolute', bottom: 16, left: 20,
-                          fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '1.1rem',
-                          color: 'rgba(255,255,255,0.15)', letterSpacing: '-0.02em',
-                        }}>
-                          {project.name}
-                        </div>
+                      <div className="project-thumbnail" style={{ background: project.thumbnail ? undefined : project.gradient }}>
+                        {project.thumbnail ? (
+                          <img
+                            src={project.thumbnail}
+                            alt={project.name}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                          />
+                        ) : (
+                          <>
+                            {/* Decorative grid lines */}
+                            <div style={{
+                              position: 'absolute', inset: 0, opacity: 0.12,
+                              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                              backgroundSize: '32px 32px',
+                            }} />
+                            <div style={{
+                              position: 'absolute', bottom: 16, left: 20,
+                              fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '1.1rem',
+                              color: 'rgba(255,255,255,0.15)', letterSpacing: '-0.02em',
+                            }}>
+                              {project.name}
+                            </div>
+                          </>
+                        )}
                         <div className="project-overlay">
                           {project.url && (
                             <motion.a

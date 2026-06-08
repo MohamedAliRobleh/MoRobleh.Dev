@@ -33,3 +33,8 @@ dist-ssr
 *.png
 *.jpg
 *.jpeg
+
+# Allow portfolio thumbnails and static assets
+!src/assets/*.jpg
+!src/assets/*.jpeg
+!src/assets/*.png
