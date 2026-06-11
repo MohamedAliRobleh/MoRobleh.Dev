@@ -89,12 +89,24 @@ function PageWrapper({ children }) {
   );
 }
 
+function VisitTracker() {
+  useEffect(() => {
+    if (import.meta.env.DEV) return;
+    if (window.location.pathname === '/dashboard-stats') return;
+    if (sessionStorage.getItem('visit-tracked')) return;
+    sessionStorage.setItem('visit-tracked', '1');
+    fetch('/api/visit', { method: 'POST' }).catch(() => {});
+  }, []);
+  return null;
+}
+
 function App() {
   const location = useLocation();
 
   return (
     <>
       <CustomCursor />
+      <VisitTracker />
       <ScrollToTop />
       <ChatBot />
       <Navbar />
