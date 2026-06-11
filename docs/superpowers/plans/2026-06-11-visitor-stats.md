@@ -1,6 +1,6 @@
 # Visitor Stats (privé) — Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Compter les visiteurs (jour / mois / total) dans Neon Postgres et les afficher sur une page cachée `/dashboard-stats` protégée par mot de passe côté serveur.
 
@@ -23,17 +23,17 @@
 - Modify: `.env`
 - Modify: `.env.example`
 
-- [ ] **Step 1: Installer le driver Neon**
+- [x] **Step 1: Installer le driver Neon**
 
 Run: `npm install @neondatabase/serverless`
 Expected: ajouté dans `dependencies` de `package.json`.
 
-- [ ] **Step 2: Générer le secret des stats**
+- [x] **Step 2: Générer le secret des stats**
 
 Run: `node -e "console.log(require('crypto').randomBytes(24).toString('base64url'))"`
 Garder la valeur générée : c'est `STATS_SECRET` (le « mot de passe » du propriétaire).
 
-- [ ] **Step 3: Compléter `.env`** (jamais commité — vérifié dans `.gitignore`)
+- [x] **Step 3: Compléter `.env`** (jamais commité — vérifié dans `.gitignore`)
 
 Ajouter à `.env` :
 
@@ -42,7 +42,7 @@ DATABASE_URL=<connection string Neon fournie par le propriétaire — jamais dan
 STATS_SECRET=<valeur générée au Step 2>
 ```
 
-- [ ] **Step 4: Compléter `.env.example`** (commité, sans valeurs réelles)
+- [x] **Step 4: Compléter `.env.example`** (commité, sans valeurs réelles)
 
 Ajouter à `.env.example` :
 
@@ -51,7 +51,7 @@ DATABASE_URL=postgresql://user:password@host/dbname?sslmode=require
 STATS_SECRET=change-me
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add package.json package-lock.json .env.example
@@ -65,7 +65,7 @@ git commit -m "chore: add @neondatabase/serverless and stats env template"
 **Files:**
 - Create: `scripts/init-db.js`
 
-- [ ] **Step 1: Écrire le script d'init**
+- [x] **Step 1: Écrire le script d'init**
 
 `scripts/init-db.js` :
 
@@ -89,12 +89,12 @@ const [{ exists }] = await sql`
 console.log('Table visits exists:', exists);
 ```
 
-- [ ] **Step 2: Exécuter le script**
+- [x] **Step 2: Exécuter le script**
 
 Run: `node --env-file=.env scripts/init-db.js`
 Expected: `Table visits exists: true`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add scripts/init-db.js
@@ -108,7 +108,7 @@ git commit -m "feat: add Neon visits table init script"
 **Files:**
 - Create: `api/visit.js`
 
-- [ ] **Step 1: Écrire la fonction**
+- [x] **Step 1: Écrire la fonction**
 
 `api/visit.js` :
 
@@ -134,12 +134,12 @@ export default async function handler(req, res) {
 }
 ```
 
-- [ ] **Step 2: Vérification statique**
+- [x] **Step 2: Vérification statique**
 
 Run: `node --check api/visit.js`
 Expected: aucune sortie (syntaxe OK). Le test fonctionnel se fait en Task 7 après déploiement (les fonctions `api/` ne tournent pas sous `vite dev`).
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add api/visit.js
@@ -153,7 +153,7 @@ git commit -m "feat: add /api/visit endpoint incrementing daily counter"
 **Files:**
 - Create: `api/stats.js`
 
-- [ ] **Step 1: Écrire la fonction**
+- [x] **Step 1: Écrire la fonction**
 
 `api/stats.js` :
 
@@ -210,12 +210,12 @@ export default async function handler(req, res) {
 }
 ```
 
-- [ ] **Step 2: Vérification statique**
+- [x] **Step 2: Vérification statique**
 
 Run: `node --check api/stats.js`
 Expected: aucune sortie. Test fonctionnel en Task 7.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add api/stats.js
@@ -229,7 +229,7 @@ git commit -m "feat: add secret-protected /api/stats endpoint"
 **Files:**
 - Modify: `src/App.jsx` (imports lignes 1-11, composant `App` lignes 92-112)
 
-- [ ] **Step 1: Ajouter le hook de tracking dans `App.jsx`**
+- [x] **Step 1: Ajouter le hook de tracking dans `App.jsx`**
 
 Dans les imports, `useEffect` est déjà importé ligne 3. Ajouter ce composant juste au-dessus de `function App()` :
 
@@ -257,12 +257,12 @@ Puis dans le JSX de `App`, ajouter `<VisitTracker />` juste après `<CustomCurso
 
 Règles couvertes : pas de double comptage par session (`sessionStorage`), pas de comptage en dev local (`import.meta.env.DEV`), pas de comptage quand le propriétaire ouvre `/dashboard-stats` directement.
 
-- [ ] **Step 2: Vérifier que le build passe**
+- [x] **Step 2: Vérifier que le build passe**
 
 Run: `npm run build`
 Expected: `✓ built in …` sans erreur.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/App.jsx
@@ -278,7 +278,7 @@ git commit -m "feat: track one visit per session via /api/visit"
 - Modify: `src/App.jsx` (ajout import + route, lignes 8-11 et 103-106)
 - Modify: `src/App.css` (ajout styles en fin de fichier)
 
-- [ ] **Step 1: Créer la page**
+- [x] **Step 1: Créer la page**
 
 `src/pages/DashboardStats.jsx` :
 
@@ -394,7 +394,7 @@ export default function DashboardStats() {
 }
 ```
 
-- [ ] **Step 2: Ajouter la route dans `src/App.jsx`**
+- [x] **Step 2: Ajouter la route dans `src/App.jsx`**
 
 Import (après la ligne `import Contact from './pages/Contact';`) :
 
@@ -408,7 +408,7 @@ Route (après la route `/contact`) :
 <Route path="/dashboard-stats" element={<PageWrapper><DashboardStats /></PageWrapper>} />
 ```
 
-- [ ] **Step 3: Ajouter les styles en fin de `src/App.css`**
+- [x] **Step 3: Ajouter les styles en fin de `src/App.css`**
 
 ```css
 /* ===== Dashboard stats (page privée) ===== */
@@ -485,7 +485,7 @@ Route (après la route `/contact`) :
 }
 ```
 
-- [ ] **Step 4: Vérifier le build + rendu local**
+- [x] **Step 4: Vérifier le build + rendu local**
 
 Run: `npm run build`
 Expected: build OK.
@@ -493,7 +493,7 @@ Expected: build OK.
 Run: `npm run dev` puis ouvrir `http://localhost:5174/dashboard-stats`
 Expected: formulaire mot de passe affiché avec le style dark. (L'API ne répond pas en dev — saisir un mot de passe affichera « Impossible de joindre le serveur », c'est attendu.)
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/pages/DashboardStats.jsx src/App.jsx src/App.css
@@ -506,7 +506,7 @@ git commit -m "feat: add hidden /dashboard-stats page with password gate"
 
 **Files:** aucun (configuration + vérification).
 
-- [ ] **Step 1: Ajouter les variables sur Vercel**
+- [x] **Step 1: Ajouter les variables sur Vercel**
 
 Via le dashboard Vercel (Project → Settings → Environment Variables), environnement **Production** (+ Preview si souhaité) :
 - `DATABASE_URL` = la connection string Neon (même valeur que `.env`)
@@ -514,7 +514,7 @@ Via le dashboard Vercel (Project → Settings → Environment Variables), enviro
 
 (Si le CLI Vercel est installé : `vercel env add DATABASE_URL production` puis `vercel env add STATS_SECRET production`.)
 
-- [ ] **Step 2: Déployer**
+- [x] **Step 2: Déployer**
 
 ```bash
 git push origin main
@@ -522,27 +522,27 @@ git push origin main
 
 Attendre la fin du déploiement Vercel (dashboard ou notification GitHub).
 
-- [ ] **Step 3: Vérifier `/api/stats` refuse sans secret**
+- [x] **Step 3: Vérifier `/api/stats` refuse sans secret**
 
 Run: `curl -s -o NUL -w "%{http_code}" https://<domaine-du-site>/api/stats`
 Expected: `401`
 
-- [ ] **Step 4: Vérifier `/api/stats` avec secret**
+- [x] **Step 4: Vérifier `/api/stats` avec secret**
 
 Run: `curl -s -H "x-stats-key: <STATS_SECRET>" https://<domaine-du-site>/api/stats`
 Expected: JSON `{"today":0,"month":0,"total":0,"last30Days":[],"last12Months":[]}` (ou valeurs déjà > 0).
 
-- [ ] **Step 5: Vérifier le comptage**
+- [x] **Step 5: Vérifier le comptage**
 
 Ouvrir le site en navigation privée, puis relancer la commande du Step 4.
 Expected: `today`, `month`, `total` incrémentés de 1. Recharger la page du site dans le même onglet privé puis revérifier : pas d'incrément supplémentaire (même session).
 
-- [ ] **Step 6: Vérifier la page cachée**
+- [x] **Step 6: Vérifier la page cachée**
 
 Ouvrir `https://<domaine-du-site>/dashboard-stats`, entrer `STATS_SECRET`.
 Expected: cartes Aujourd'hui / Ce mois / Total + barres 30 jours et 12 mois.
 
-- [ ] **Step 7: Commit final (plan coché)**
+- [x] **Step 7: Commit final (plan coché)**
 
 ```bash
 git add docs/superpowers/plans/2026-06-11-visitor-stats.md
