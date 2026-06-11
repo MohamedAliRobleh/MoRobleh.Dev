@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import Contact from './pages/Contact';
+import DashboardStats from './pages/DashboardStats';
 
 function CustomCursor() {
   const cursorRef = useRef(null);
@@ -116,6 +117,7 @@ function App() {
           <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
           <Route path="/portfolio" element={<PageWrapper><Portfolio /></PageWrapper>} />
           <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+          <Route path="/dashboard-stats" element={<PageWrapper><DashboardStats /></PageWrapper>} />
         </Routes>
       </AnimatePresence>
       <Footer />

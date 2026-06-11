@@ -626,3 +626,76 @@ textarea.form-control-custom { resize: vertical; min-height: 140px; }
 .text-cyan { color: var(--accent-cyan); }
 .divider-gradient { height: 1px; background: linear-gradient(to right, transparent, var(--card-border), transparent); }
 .btn:focus, button:focus { outline: none; box-shadow: none !important; }
+
+/* ===== Dashboard stats (page privée) ===== */
+.stats-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: calc(var(--navbar-height) + 48px) 24px 80px;
+  min-height: 70vh;
+}
+.stats-page h1 { font-size: 2rem; margin-bottom: 28px; }
+.stats-page h2 { font-size: 1.15rem; margin: 36px 0 14px; color: var(--text-muted); }
+.stats-login {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 360px;
+  margin: 10vh auto 0;
+  padding: 32px;
+  border-radius: var(--radius);
+}
+.stats-login input {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  color: var(--text);
+  font-size: 1rem;
+}
+.stats-login button {
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.stats-login button:disabled { opacity: 0.5; cursor: default; }
+.stats-error { color: #f87171; font-size: 0.9rem; margin: 0; }
+.stats-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.stats-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 12px;
+  border-radius: var(--radius);
+}
+.stats-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent-light);
+}
+.stats-label { color: var(--text-muted); font-size: 0.9rem; }
+.stats-bars { display: flex; flex-direction: column; gap: 6px; }
+.stats-bar-row { display: flex; align-items: center; gap: 10px; }
+.stats-bar-label {
+  width: 56px;
+  flex-shrink: 0;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  text-align: right;
+}
+.stats-bar {
+  height: 14px;
+  min-width: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
+  border-radius: 4px;
+}
+.stats-bar-count { color: var(--text-muted); font-size: 0.8rem; }
+.stats-empty { color: var(--text-dim); }
+@media (max-width: 560px) {
+  .stats-cards { grid-template-columns: 1fr; }
+}
